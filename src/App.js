@@ -7,7 +7,7 @@ export default function App() {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
+	} = useForm({ defaultValues: { firstName: "山田" } });
 
 	const onSubmit = (data) => console.log("onSubmit:", data);
 	console.log("errors:", errors);
@@ -28,12 +28,19 @@ export default function App() {
 					maxLength: 15,
 				})}
 			/>
+			<label>年齢</label>
+			<input
+				{...register("age", {
+					required: true,
+					min: 20,
+				})}
+			/>
 			<label>ニックネーム</label>
 			<input {...register("nickName", { require: true })} />
 			<label>Emailアドレス</label>
 			<input
 				{...register("email", {
-					require: true,
+					required: true,
 					pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9]+)/,
 				})}
 			/>
